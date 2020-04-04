@@ -4,14 +4,112 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
+  FlatList,
+  Image,
 } from 'react-native'
 import { AntDesign } from '@expo/vector-icons'
+
+const data = [
+  {
+    name: 'Tent Boss',
+    user: 'Tom Shelby',
+    description: 'This tent stands out in public and screams who\'s boss',
+    type: 'lending',
+    displayPrice: '5cUSD',
+    subDisplay: 'per day',
+    image: 'https://contents.mediadecathlon.com/p1097535/k$543f3710dcd7146380b29753dbd9cba7/camping-tent-2-seconds-2-people-green.jpg?&f=800x800',
+  },
+  {
+    name: 'Family Tent',
+    user: 'Grace Shelby',
+    description: 'Tent is extra durable and can fit 3-5 people',
+    type: 'selling',
+    displayPrice: '12cUSD',
+    subDisplay: '',
+    image: 'https://q-cf.bstatic.com/images/hotel/max1024x768/184/184808466.jpg',
+  },
+  {
+    name: 'Solo Tent',
+    user: 'Arthur Shelby',
+    description: 'Tent is a rare find that can fit 1-2 person',
+    type: 'lending',
+    displayPrice: '15cUSD',
+    subDisplay: 'per day',
+    image: 'https://i.ebayimg.com/images/g/uYEAAMXQEgpTDBNG/s-l500.jpg',
+  },
+  {
+    name: 'Rainbow Tent',
+    user: 'John Shelby',
+    description: 'Colorful tent for any festival that can endure immense heat.',
+    type: 'lending',
+    displayPrice: '2cUSD',
+    subDisplay: 'per day',
+    image: 'https://d10b75yp86lc36.cloudfront.net/Monotaro3/pi/full/mono21440536-160210-02.jpg',
+  },
+  {
+    name: 'Tent of the Stars',
+    user: 'Alfie Solomons',
+    description: 'Tent is extra durable and can fit 3-5 people',
+    type: 'selling',
+    displayPrice: '12cUSD',
+    subDisplay: '',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS6AhUzewqD1RGvD11xmHRVcqsm0x0BUmwBKpD8YNp_fio5JoM0&usqp=CAU',
+  },
+  {
+    name: 'Forgot Tent',
+    user: 'Billy Kimber',
+    description: 'Tent is a rare find that can fit 1-2 person',
+    type: 'lending',
+    displayPrice: '15cUSD',
+    subDisplay: 'per day',
+    image: 'https://cdn2.bigcommerce.com/server3700/cd338/products/1729/images/6307/Snugpak_Ionosphere_1_Person_Tent_Tactical_Asia_10__43963.1416036169.1280.1280.jpg?c=2',
+  },
+]
+
+const renderItem = (item) => {
+  const {
+    name,
+    user,
+    description,
+    type,
+    displayPrice,
+    subDisplay,
+    image,
+  } = item
+  return (
+    <TouchableOpacity style={styles.itemContainer}>
+      <Image source={{ uri: image }} style={styles.itemImage} />
+      <View style={{ height: '100%', flex: 1 }}>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+          <Text style={{ fontSize: 16, fontWeight: 'bold' }}>{name}</Text>
+          <View style={{ backgroundColor: type === 'selling' ? '#FF9800' : '#4CAF50', padding: 4, borderRadius: 4 }}>
+            <Text style={{ fontSize: 12, color: '#ffffff' }}>{type}</Text>
+          </View>
+        </View>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          <Text style={{ fontSize: 14, color: '#84b4c8' }}>{user}</Text>
+          <Text style={{ fontSize: 24, fontWeight: 'bold' }}>{displayPrice}</Text>
+        </View>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          <Text style={{ fontSize: 12, color: '#757575', maxWidth: subDisplay.length > 0 ? '60%' : '60%' }}>{description}</Text>
+          {!!subDisplay && <Text style={{ fontSize: 12 }}>{subDisplay}</Text>}
+        </View>
+      </View>
+    </TouchableOpacity>
+  )
+}
 
 const Home = (props) => {
   const { navigation } = props
   return (
     <View style={styles.container}>
-      <Text>Welcome Home! MADERPAKER</Text>
+      <FlatList
+        style={{ height: '100%', width: '100%' }}
+        data={data}
+        renderItem={({ item }) => renderItem(item)}
+        keyExtractor={(_, index) => index.toString()}
+        ItemSeparatorComponent={() => <View style={styles.itemSeparator} />}
+      />
       <TouchableOpacity style={styles.fab} onPress={() => navigation.navigate('PostTent')}>
         <AntDesign name='plus' size={30} color='white' />
       </TouchableOpacity>
@@ -21,6 +119,7 @@ const Home = (props) => {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: '#ffffff',
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
@@ -35,6 +134,24 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  itemSeparator: {
+    height: 1,
+    backgroundColor: '#eeeeee',
+    width: '100%',
+  },
+  itemContainer: {
+    flexDirection: 'row',
+    padding: 16,
+    width: '100%',
+    backgroundColor: '#ffffff',
+    alignItems: 'center',
+  },
+  itemImage: {
+    height: 70,
+    width: 70,
+    marginRight: 16,
+    borderRadius: 6,
   },
 })
 
