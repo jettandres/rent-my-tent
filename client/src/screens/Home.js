@@ -7,14 +7,17 @@ import {
 } from 'react-native'
 import { AntDesign } from '@expo/vector-icons'
 
-const Home = () => (
-  <View style={styles.container}>
-    <Text>Welcome Home! MADERPAKER</Text>
-    <TouchableOpacity style={styles.fab}>
-      <AntDesign name='plus' size={30} color='white' />
-    </TouchableOpacity>
-  </View>
-)
+const Home = (props) => {
+  const { navigation } = props
+  return (
+    <View style={styles.container}>
+      <Text>Welcome Home! MADERPAKER</Text>
+      <TouchableOpacity style={styles.fab} onPress={() => navigation.navigate('PostTent')}>
+        <AntDesign name='plus' size={30} color='white' />
+      </TouchableOpacity>
+    </View>
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
