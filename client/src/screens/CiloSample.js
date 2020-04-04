@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Image, StyleSheet, Text, TextInput, Button, View, YellowBox } from 'react-native';
 
-import '../global';
-import { web3, kit } from '../root';
+import '../../global';
+import { web3, kit } from '../../root';
+import HelloWorldContract from '../../contracts/HelloWorld.json'
 
 import {
   requestTxSig,
@@ -14,7 +15,7 @@ import {
 import { CeloContract } from '@celo/contractkit'
 import { toTxResult } from "@celo/contractkit/lib/utils/tx-result";
 import { Linking } from 'expo'
-import HelloWorldContract from '../contracts/HelloWorld.json'
+
 
 YellowBox.ignoreWarnings(['Warning: The provided value \'moz', 'Warning: The provided value \'ms-stream']);
 
@@ -89,7 +90,7 @@ class CiloSample extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Image resizeMode='contain' source={require("../assets/white-wallet-rings.png")}></Image>
+        <Image resizeMode='contain' source={require("../../assets/white-wallet-rings.png")}></Image>
         <Text>Open up client/App.js to start working on your app!</Text>
         
         <Text style={styles.title}>Login first</Text>
