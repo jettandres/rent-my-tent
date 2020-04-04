@@ -1,10 +1,18 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native'
+import { AntDesign } from '@expo/vector-icons'
 
 const Home = () => (
   <View style={styles.container}>
     <Text>Welcome Home! MADERPAKER</Text>
-    <View style={styles.fab} />
+    <TouchableOpacity style={styles.fab}>
+      <AntDesign name='plus' size={30} color='white' />
+    </TouchableOpacity>
   </View>
 )
 
@@ -22,6 +30,8 @@ const styles = StyleSheet.create({
     height: 60,
     width: 60,
     borderRadius: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 })
 
