@@ -75,7 +75,8 @@ export default class App extends React.Component {
     const dappName = 'Hello Celo'
     const callback = Linking.makeUrl('/my/path')
 
-    const txObject = await this.state.helloWorldContract.methods.setName(this.state.textInput)
+    const { textInput: name } = this.state;
+    const txObject = await this.state.helloWorldContract.methods.setName({ name, company: 'Shelby Co.'})
 
     requestTxSig(
       kit,

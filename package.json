@@ -4,7 +4,8 @@
     "account": "node utils/createAccount.js"
   },
   "dependencies": {
-    "@celo/contractkit": "0.2.14"
+    "@celo/contractkit": "0.2.14",
+    "expo": "^37.0.4"
   },
   "devDependencies": {},
   "private": true
