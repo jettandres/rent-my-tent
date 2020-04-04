@@ -79,20 +79,20 @@ const renderItem = (item) => {
   return (
     <TouchableOpacity style={styles.itemContainer}>
       <Image source={{ uri: image }} style={styles.itemImage} />
-      <View style={{ height: '100%', flex: 1 }}>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Text style={{ fontSize: 16, fontWeight: 'bold' }}>{name}</Text>
-          <View style={{ backgroundColor: type === 'selling' ? '#FF9800' : '#4CAF50', padding: 4, borderRadius: 4 }}>
-            <Text style={{ fontSize: 12, color: '#ffffff' }}>{type}</Text>
+      <View style={styles.itemInfoContainer}>
+        <View style={[styles.itemInfoSubContainer, { alignItems: 'center' }]}>
+          <Text style={styles.itemInfoName}>{name}</Text>
+          <View style={[styles.itemInfoTypeContainer, { backgroundColor: type === 'selling' ? '#ff9800' : '#4caf50' }]}>
+            <Text style={styles.itemInfoType}>{type}</Text>
           </View>
         </View>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          <Text style={{ fontSize: 14, color: '#84b4c8' }}>{user}</Text>
-          <Text style={{ fontSize: 24, fontWeight: 'bold' }}>{displayPrice}</Text>
+        <View style={styles.itemInfoSubContainer}>
+          <Text style={styles.itemInfoUser}>{user}</Text>
+          <Text style={styles.itemInfoDisplayPrice}>{displayPrice}</Text>
         </View>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          <Text style={{ fontSize: 12, color: '#757575', maxWidth: subDisplay.length > 0 ? '60%' : '60%' }}>{description}</Text>
-          {!!subDisplay && <Text style={{ fontSize: 12 }}>{subDisplay}</Text>}
+        <View style={styles.itemInfoSubContainer}>
+          <Text style={styles.itemInfoDescription}>{description}</Text>
+          {!!subDisplay && <Text style={styles.itemInfoSubDisplay}>{subDisplay}</Text>}
         </View>
       </View>
     </TouchableOpacity>
@@ -152,6 +152,42 @@ const styles = StyleSheet.create({
     width: 70,
     marginRight: 16,
     borderRadius: 6,
+  },
+  itemInfoContainer: {
+    height: '100%',
+    flex: 1,
+  },
+  itemInfoSubContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  itemInfoName: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  itemInfoTypeContainer: {
+    padding: 4,
+    borderRadius: 4,
+  },
+  itemInfoType: {
+    fontSize: 12,
+    color: '#ffffff',
+  },
+  itemInfoUser: {
+    fontSize: 14,
+    color: '#84b4c8',
+  },
+  itemInfoDisplayPrice: {
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  itemInfoDescription: {
+    fontSize: 12,
+    color: '#757575',
+    width: '60%',
+  },
+  itemInfoSubDisplay: {
+    fontSize: 12,
   },
 })
 
