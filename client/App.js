@@ -2,7 +2,7 @@ import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 
-import SearchBar from './src/components/SearchBar'
+import SearchBar, { headerStyle } from './src/components/SearchBar'
 import Home from './src/screens/Home'
 import CiloSample from './src/screens/CiloSample'
 
@@ -15,7 +15,9 @@ const App = () => (
         name='Home'
         component={Home}
         options={{
-          headerTitle: props => <SearchBar />,
+          headerTitleAlign: 'center',
+          headerTitleContainerStyle: headerStyle,
+          headerTitle: (props) => <SearchBar {...props} />,
         }}
       />
       <Screen name="CiloSample" component={CiloSample} />
