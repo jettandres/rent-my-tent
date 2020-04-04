@@ -15,7 +15,7 @@
     "plugins": ["react", "react-hooks"],
     "rules": {
       "no-unused-vars": 2,
-      "@typescript-eslint/no-use-before-define": 0,
+      "no-use-before-define": 0,
       "react/prop-types": 0,
       "semi": [2, "never"],
       "no-trailing-spaces": 2,
@@ -28,6 +28,7 @@
       "object-curly-spacing": [2, "always"],
       "react/display-name": 0,
       "arrow-spacing": 2,
-      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+      "jsx-quotes":"off"
     }
 }
