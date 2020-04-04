@@ -138,7 +138,8 @@ const styles = StyleSheet.create({
   itemSeparator: {
     height: 1,
     backgroundColor: '#eeeeee',
-    width: '100%',
+    width: '90%',
+    alignSelf: 'center',
   },
   itemContainer: {
     flexDirection: 'row',
