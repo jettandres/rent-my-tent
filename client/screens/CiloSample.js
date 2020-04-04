@@ -38,14 +38,11 @@ class CiloSample extends Component {
       dappName,
       callback,
     })
-  
     const dappkitResponse = await waitForAccountAuth(requestId)
   
     kit.defaultAccount = dappkitResponse.address
-  
-    const stableToken = await kit.contracts.getStableToken()
-  
-    const [cUSDBalanceBig, cUSDDecimals] = await Promise.all([stableToken.balanceOf(kit.defaultAccount), stableToken.decimals()])
+    const stableToken = await kit.contracts.getStableToken();
+    const [cUSDBalanceBig, cUSDDecimals] = await Promise.all([stableToken.balanceOf(kit.defaultAccount), stableToken.decimals()]);
     let cUSDBalance = cUSDBalanceBig.toString()
     this.setState({ cUSDBalance, isLoadingBalance: false })
   

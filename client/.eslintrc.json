@@ -1,0 +1,33 @@
+{
+    "extends": "airbnb",
+    "parserOptions": {
+      "project": "./tsconfig.json",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "env": {
+      "node": true
+    },
+    "settings": {
+      "react": { "version": "detect" }
+    },
+    "plugins": ["react", "react-hooks"],
+    "rules": {
+      "no-unused-vars": 2,
+      "@typescript-eslint/no-use-before-define": 0,
+      "react/prop-types": 0,
+      "semi": [2, "never"],
+      "no-trailing-spaces": 2,
+      "react/jsx-curly-spacing": 2,
+      "react/jsx-equals-spacing": 2,
+      "react-hooks/rules-of-hooks": 2,
+      "react-hooks/exhaustive-deps": 1,
+      "eol-last": 2,
+      "array-bracket-spacing": 2,
+      "object-curly-spacing": [2, "always"],
+      "react/display-name": 0,
+      "arrow-spacing": 2,
+      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+    }
+}
