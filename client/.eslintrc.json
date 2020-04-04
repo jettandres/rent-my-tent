@@ -29,6 +29,7 @@
       "react/display-name": 0,
       "arrow-spacing": 2,
       "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-      "jsx-quotes":"off"
+      "jsx-quotes":"off",
+      "react/jsx-props-no-spreading": 0
     }
 }
