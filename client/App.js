@@ -33,9 +33,7 @@ const App = () => (
       <Screen
         name="RentTent"
         component={RentTent}
-        options={{
-          headerTitle: 'Rent a tent',
-        }}
+        options={({ route }) => ({ title: route.params.tent.name })}
       />
     </Navigator>
   </NavigationContainer>
