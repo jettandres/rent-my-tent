@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   View,
   Text,
@@ -23,6 +23,23 @@ const RentTent = ({ route, navigation }) => {
   } = route.params
   const [rentStartDate, setRentStartDate] = useState(moment())
   const [rentEndDate, setRentEndDate] = useState(moment(rentEndDate).add(1, 'w'))
+  const [rentalPrice, setRentalPrice] = useState(displayPrice.match(/\d+/g).map(Number) * rentEndDate.diff(rentStartDate, 'd') + 1)
+  const [depositFee, setDepositFee] = useState(parseFloat(rentalPrice * 0.25).toFixed(2))
+  const [totalFee, setTotalFee] = useState(parseFloat(rentalPrice + depositFee).toFixed(2))
+
+  useEffect(() => {
+    const rate = displayPrice.match(/\d+/g).map(Number)
+    const dayDiff = rentEndDate.diff(rentStartDate, 'd') / 7
+    setRentalPrice(parseFloat(rate * dayDiff).toFixed(2))
+  }, [rentStartDate, rentEndDate, displayPrice])
+
+  useEffect(() => {
+    setDepositFee(parseFloat(rentalPrice * 0.25).toFixed(2))
+  }, [rentalPrice])
+
+  useEffect(() => {
+    setTotalFee(parseFloat(parseFloat(rentalPrice) + parseFloat(depositFee)))
+  }, [rentalPrice, depositFee])
   return (
     <ScrollView style={styles.scrollView}>
       <View style={styles.container}>
@@ -91,22 +108,22 @@ const RentTent = ({ route, navigation }) => {
           <Text style={{ fontSize: 16, marginTop: 24, fontWeight: 'bold', marginBottom: 16 }}>Summary</Text>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
             <Text>Rental</Text>
-            <Text>{displayPrice.match(/\d+/g).map(Number) * rentEndDate.diff(rentStartDate, 'd') + 1}.00 cUSD</Text>
+            <Text>{rentalPrice} cUSD</Text>
           </View>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 8 }}>
             <Text>Deposit fee</Text>
-            <Text>1.00 cUSD</Text>
+            <Text>{depositFee} cUSD</Text>
           </View>
 
           <View style={{ marginVertical: 16, height: 3, backgroundColor: 'black', width: '100%' }} />
 
           <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
             <Text style={{ fontWeight: 'bold', fontSize: 14 }}>TOTAL</Text>
-            <Text style={{ fontWeight: 'bold', fontSize: 14 }}>86.00 cUSD</Text>
+            <Text style={{ fontWeight: 'bold', fontSize: 14 }}>{totalFee} cUSD</Text>
           </View>
 
           <View style={{ marginTop: 32, backgroundColor: '#f2f2f2', padding: 16, borderRadius: 6 }}>
-            <Text>By renting the following tent, I hereby agree that my tent shall be automatically reposted to encourage reusability along with Rent-My-Tent Terms and Conditions</Text>
+            <Text>By renting the following tent, I hereby agree that my tent shall be automatically reposted after the indicated period to encourage reusability along with Rent-My-Tent Terms and Conditions</Text>
           </View>
 
           <TouchableOpacity style={{ width: '100%', backgroundColor: '#84b4c8', padding: 20, alignItems: 'center', justifyContent: 'center', borderRadius: 4, marginTop: 16 }}>
