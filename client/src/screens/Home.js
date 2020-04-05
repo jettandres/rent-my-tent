@@ -15,7 +15,6 @@ const data = [
     user: 'Tom Shelby',
     description: 'This tent stands out in public and screams who\'s boss',
     displayPrice: '5cUSD',
-    subDisplay: 'per week',
     image: 'https://contents.mediadecathlon.com/p1097535/k$543f3710dcd7146380b29753dbd9cba7/camping-tent-2-seconds-2-people-green.jpg?&f=800x800',
   },
   {
@@ -23,7 +22,6 @@ const data = [
     user: 'Grace Shelby',
     description: 'Tent is extra durable and can fit 3-5 people',
     displayPrice: '12cUSD',
-    subDisplay: '',
     image: 'https://q-cf.bstatic.com/images/hotel/max1024x768/184/184808466.jpg',
   },
   {
@@ -31,7 +29,6 @@ const data = [
     user: 'Arthur Shelby',
     description: 'Tent is a rare find that can fit 1-2 person',
     displayPrice: '15cUSD',
-    subDisplay: 'per week',
     image: 'https://i.ebayimg.com/images/g/uYEAAMXQEgpTDBNG/s-l500.jpg',
   },
   {
@@ -39,7 +36,6 @@ const data = [
     user: 'John Shelby',
     description: 'Colorful tent for any festival that can endure immense heat.',
     displayPrice: '2cUSD',
-    subDisplay: 'per week',
     image: 'https://d10b75yp86lc36.cloudfront.net/Monotaro3/pi/full/mono21440536-160210-02.jpg',
   },
   {
@@ -55,7 +51,6 @@ const data = [
     user: 'Billy Kimber',
     description: 'Tent is a rare find that can fit 1-2 person',
     displayPrice: '15cUSD',
-    subDisplay: 'per week',
     image: 'https://cdn2.bigcommerce.com/server3700/cd338/products/1729/images/6307/Snugpak_Ionosphere_1_Person_Tent_Tactical_Asia_10__43963.1416036169.1280.1280.jpg?c=2',
   },
 ]
@@ -66,7 +61,6 @@ const renderItem = (item) => {
     user,
     description,
     displayPrice,
-    subDisplay,
     image,
   } = item
   return (
@@ -82,7 +76,7 @@ const renderItem = (item) => {
         </View>
         <View style={styles.itemInfoSubContainer}>
           <Text style={styles.itemInfoDescription}>{description}</Text>
-          {!!subDisplay && <Text style={styles.itemInfoSubDisplay}>{subDisplay}</Text>}
+          <Text style={styles.itemInfoSubDisplay}>per week</Text>
         </View>
       </View>
     </TouchableOpacity>
