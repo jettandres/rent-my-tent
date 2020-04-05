@@ -55,7 +55,7 @@ const data = [
   },
 ]
 
-const renderItem = (item) => {
+const renderItem = (item, onPress) => {
   const {
     name,
     user,
@@ -64,7 +64,7 @@ const renderItem = (item) => {
     image,
   } = item
   return (
-    <TouchableOpacity style={styles.itemContainer}>
+    <TouchableOpacity style={styles.itemContainer} onPress={onPress}>
       <Image source={{ uri: image }} style={styles.itemImage} />
       <View style={styles.itemInfoContainer}>
         <View style={[styles.itemInfoSubContainer, { alignItems: 'center' }]}>
@@ -90,7 +90,7 @@ const Home = (props) => {
       <FlatList
         style={{ height: '100%', width: '100%' }}
         data={data}
-        renderItem={({ item }) => renderItem(item)}
+        renderItem={({ item }) => renderItem(item, () => navigation.navigate('RentTent', { tent: item }))}
         keyExtractor={(_, index) => index.toString()}
         ItemSeparatorComponent={() => <View style={styles.itemSeparator} />}
       />
@@ -175,5 +175,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
 })
+
+export { renderItem as TentListing }
 
 export default Home

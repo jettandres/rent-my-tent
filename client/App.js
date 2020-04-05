@@ -6,6 +6,7 @@ import SearchBar, { headerStyle } from './src/components/SearchBar'
 import Home from './src/screens/Home'
 import CiloSample from './src/screens/CiloSample'
 import PostTent from './src/screens/PostTent'
+import RentTent from './src/screens/RentTent'
 
 const { Navigator, Screen } = createStackNavigator()
 
@@ -27,6 +28,13 @@ const App = () => (
         component={PostTent}
         options={{
           headerTitle: 'Post your tent',
+        }}
+      />
+      <Screen
+        name="RentTent"
+        component={RentTent}
+        options={{
+          headerTitle: 'Rent a tent',
         }}
       />
     </Navigator>
