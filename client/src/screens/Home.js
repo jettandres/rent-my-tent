@@ -14,16 +14,14 @@ const data = [
     name: 'Tent Boss',
     user: 'Tom Shelby',
     description: 'This tent stands out in public and screams who\'s boss',
-    type: 'lending',
     displayPrice: '5cUSD',
-    subDisplay: 'per day',
+    subDisplay: 'per week',
     image: 'https://contents.mediadecathlon.com/p1097535/k$543f3710dcd7146380b29753dbd9cba7/camping-tent-2-seconds-2-people-green.jpg?&f=800x800',
   },
   {
     name: 'Family Tent',
     user: 'Grace Shelby',
     description: 'Tent is extra durable and can fit 3-5 people',
-    type: 'selling',
     displayPrice: '12cUSD',
     subDisplay: '',
     image: 'https://q-cf.bstatic.com/images/hotel/max1024x768/184/184808466.jpg',
@@ -32,25 +30,22 @@ const data = [
     name: 'Solo Tent',
     user: 'Arthur Shelby',
     description: 'Tent is a rare find that can fit 1-2 person',
-    type: 'lending',
     displayPrice: '15cUSD',
-    subDisplay: 'per day',
+    subDisplay: 'per week',
     image: 'https://i.ebayimg.com/images/g/uYEAAMXQEgpTDBNG/s-l500.jpg',
   },
   {
     name: 'Rainbow Tent',
     user: 'John Shelby',
     description: 'Colorful tent for any festival that can endure immense heat.',
-    type: 'lending',
     displayPrice: '2cUSD',
-    subDisplay: 'per day',
+    subDisplay: 'per week',
     image: 'https://d10b75yp86lc36.cloudfront.net/Monotaro3/pi/full/mono21440536-160210-02.jpg',
   },
   {
     name: 'Tent of the Stars',
     user: 'Alfie Solomons',
     description: 'Tent is extra durable and can fit 3-5 people',
-    type: 'selling',
     displayPrice: '12cUSD',
     subDisplay: '',
     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS6AhUzewqD1RGvD11xmHRVcqsm0x0BUmwBKpD8YNp_fio5JoM0&usqp=CAU',
@@ -59,9 +54,8 @@ const data = [
     name: 'Forgot Tent',
     user: 'Billy Kimber',
     description: 'Tent is a rare find that can fit 1-2 person',
-    type: 'lending',
     displayPrice: '15cUSD',
-    subDisplay: 'per day',
+    subDisplay: 'per week',
     image: 'https://cdn2.bigcommerce.com/server3700/cd338/products/1729/images/6307/Snugpak_Ionosphere_1_Person_Tent_Tactical_Asia_10__43963.1416036169.1280.1280.jpg?c=2',
   },
 ]
@@ -71,7 +65,6 @@ const renderItem = (item) => {
     name,
     user,
     description,
-    type,
     displayPrice,
     subDisplay,
     image,
@@ -82,9 +75,6 @@ const renderItem = (item) => {
       <View style={styles.itemInfoContainer}>
         <View style={[styles.itemInfoSubContainer, { alignItems: 'center' }]}>
           <Text style={styles.itemInfoName}>{name}</Text>
-          <View style={[styles.itemInfoTypeContainer, { backgroundColor: type === 'selling' ? '#ff9800' : '#4caf50' }]}>
-            <Text style={styles.itemInfoType}>{type}</Text>
-          </View>
         </View>
         <View style={styles.itemInfoSubContainer}>
           <Text style={styles.itemInfoUser}>{user}</Text>
