@@ -43,14 +43,14 @@ const RentTent = ({ route, navigation }) => {
   return (
     <ScrollView style={styles.scrollView}>
       <View style={styles.container}>
-        <Image style={{ width: '100%', height: 250, marginBottom: 16, borderRadius: 2 }} source={{ uri: image }} />
-        <View style={{ paddingHorizontal: 16 }}>
-          <Text style={{ fontSize: 16, marginTop: 8, fontWeight: 'bold', marginBottom: 4 }}>Description</Text>
+        <Image style={styles.image} source={{ uri: image }} />
+        <View style={styles.detailsContainer}>
+          <Text style={styles.descriptionLabel}>Description</Text>
           <Text>{description}</Text>
 
-          <View style={{ marginTop: 24, flexDirection: 'row', justifyContent: 'space-between' }}>
-            <View style={{ justifyContent: 'center', alignItems: 'flex-start' }}>
-              <Text style={{ fontSize: 16, fontWeight: 'bold', marginBottom: 8 }}>Starting Date</Text>
+          <View style={styles.dateRowsContainer}>
+            <View style={styles.dateRowContainer}>
+              <Text style={styles.dateRowLabel}>Starting Date</Text>
               <DatePicker
                 style={{ width: 150 }}
                 date={rentStartDate}
@@ -75,8 +75,8 @@ const RentTent = ({ route, navigation }) => {
                 onDateChange={(_, date) => setRentStartDate(moment(date))}
               />
             </View>
-            <View style={{ justifyContent: 'center', alignItems: 'flex-start' }}>
-              <Text style={{ fontSize: 16, fontWeight: 'bold', marginBottom: 8 }}>End Date</Text>
+            <View style={styles.dateRowContainer}>
+              <Text style={styles.dateRowLabel}>End Date</Text>
               <DatePicker
                 style={{ width: 150 }}
                 date={rentEndDate}
@@ -105,29 +105,29 @@ const RentTent = ({ route, navigation }) => {
             </View>
           </View>
 
-          <Text style={{ fontSize: 16, marginTop: 24, fontWeight: 'bold', marginBottom: 16 }}>Summary</Text>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          <Text style={styles.summaryLabel}>Summary</Text>
+          <View style={styles.summaryItemContainer}>
             <Text>Rental</Text>
             <Text>{rentalPrice} cUSD</Text>
           </View>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 8 }}>
+          <View style={[styles.summaryItemContainer, { marginTop: 8 }]}>
             <Text>Deposit fee</Text>
             <Text>{depositFee} cUSD</Text>
           </View>
 
-          <View style={{ marginVertical: 16, height: 3, backgroundColor: 'black', width: '100%' }} />
+          <View style={styles.summaryDivider} />
 
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-            <Text style={{ fontWeight: 'bold', fontSize: 14 }}>TOTAL</Text>
-            <Text style={{ fontWeight: 'bold', fontSize: 14 }}>{totalFee} cUSD</Text>
+          <View style={styles.summaryItemContainer}>
+            <Text style={styles.summaryTotal}>TOTAL</Text>
+            <Text style={styles.summaryTotal}>{totalFee} cUSD</Text>
           </View>
 
-          <View style={{ marginTop: 32, backgroundColor: '#f2f2f2', padding: 16, borderRadius: 6 }}>
+          <View style={styles.agreementContainer}>
             <Text>By renting the following tent, I hereby agree that my tent shall be automatically reposted after the indicated period to encourage reusability along with Rent-My-Tent Terms and Conditions</Text>
           </View>
 
-          <TouchableOpacity style={{ width: '100%', backgroundColor: '#84b4c8', padding: 20, alignItems: 'center', justifyContent: 'center', borderRadius: 4, marginTop: 16 }}>
-            <Text style={{ color: '#ffffff', fontSize: 16 }}>REQUEST A RENT</Text>
+          <TouchableOpacity style={styles.requestButton}>
+            <Text style={styles.requestButtonLabel}>REQUEST A RENT</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -143,6 +143,74 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     flex: 1,
+  },
+  image: {
+    width: '100%',
+    height: 250,
+    marginBottom: 16,
+    borderRadius: 2,
+  },
+  detailsContainer: {
+    paddingHorizontal: 16,
+  },
+  descriptionLabel: {
+    fontSize: 16,
+    marginTop: 8,
+    fontWeight: 'bold',
+    marginBottom: 4,
+  },
+  dateRowsContainer: {
+    marginTop: 24,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  dateRowContainer: {
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+  },
+  dateRowLabel: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 8,
+  },
+  summaryLabel: {
+    fontSize: 16,
+    marginTop: 24,
+    fontWeight: 'bold',
+    marginBottom: 16,
+  },
+  summaryItemContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  summaryDivider: {
+    marginVertical: 16,
+    height: 3,
+    backgroundColor: 'black',
+    width: '100%',
+  },
+  summaryTotal: {
+    fontWeight: 'bold',
+    fontSize: 14,
+  },
+  agreementContainer: {
+    marginTop: 32,
+    backgroundColor: '#f2f2f2',
+    padding: 16,
+    borderRadius: 6,
+  },
+  requestButton: {
+    width: '100%',
+    backgroundColor: '#84b4c8',
+    padding: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 4,
+    marginTop: 16,
+  },
+  requestButtonLabel: {
+    color: '#ffffff',
+    fontSize: 16,
   },
 })
 
