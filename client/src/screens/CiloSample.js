@@ -28,6 +28,19 @@ class CiloSample extends Component {
     contractName: '',
     textInput: ''
   }
+
+  componentDidMount = async () => {
+    const networkId = await web3.eth.net.getId();
+    const deployedNetwork = HelloWorldContract.networks[networkId];
+
+    const instance = new web3.eth.Contract(
+      HelloWorldContract.abi,
+      deployedNetwork && deployedNetwork.address,
+      { from: this.state.account }
+    );
+
+    this.setState({ helloWorldContract: instance })
+  }
   
   login = async () => {
     const requestId = 'login'
@@ -61,7 +74,7 @@ class CiloSample extends Component {
     const callback = Linking.makeUrl('/my/path')
   
     const { textInput: name } = this.state;
-    const txObject = await this.state.helloWorldContract.methods.setName({ name, company: 'Shelby Co.'})
+    const txObject = await this.state.helloWorldContract.methods.setName(this.state.textInput)
   
     requestTxSig(
       kit,
