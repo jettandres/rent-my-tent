@@ -1,21 +1,31 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import {
   View,
   Text,
   StyleSheet,
   Image,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native'
 
 import DatePicker from 'react-native-datepicker'
 import moment from 'moment'
 
+import {
+  requestTxSig,
+  waitForSignedTxs,
+  requestAccountAddress,
+  waitForAccountAuth,
+  FeeCurrency
+} from '@celo/dappkit'
+
+import { Linking } from 'expo'
+
+import { web3, kit } from '../../root'
+
 const RentTent = ({ route, navigation }) => {
   const {
     tent: {
-      name,
-      user,
       description,
       displayPrice,
       image,
@@ -40,6 +50,32 @@ const RentTent = ({ route, navigation }) => {
   useEffect(() => {
     setTotalFee(parseFloat(parseFloat(rentalPrice) + parseFloat(depositFee)))
   }, [rentalPrice, depositFee])
+
+  const [user, setUser] = useState(null)
+  useEffect(() => {
+    if (user) {
+      alert(JSON.stringify(user))
+    }
+  }, [user])
+
+  const login = useCallback(async () => {
+    const requestId = 'login'
+    const dappName = 'Rent-My-Tent'
+    const callback = Linking.makeUrl('/my/path')
+
+    requestAccountAddress({
+      requestId,
+      dappName,
+      callback,
+    })
+    const dappkitResponse = await waitForAccountAuth(requestId)
+
+    kit.defaultAccount = dappkitResponse.address
+    const stableToken = await kit.contracts.getStableToken()
+    const [cUSDBalanceBig, cUSDDecimals] = await Promise.all([stableToken.balanceOf(kit.defaultAccount), stableToken.decimals()])
+
+    setUser({ cUSDBalance: cUSDBalanceBig.toString(), address: dappkitResponse.address, phoneNumber: dappkitResponse.phoneNumber })
+  }, [])
   return (
     <ScrollView style={styles.scrollView}>
       <View style={styles.container}>
@@ -126,7 +162,7 @@ const RentTent = ({ route, navigation }) => {
             <Text>By renting the following tent, I hereby agree that my tent shall be automatically reposted after the indicated period to encourage reusability along with Rent-My-Tent Terms and Conditions</Text>
           </View>
 
-          <TouchableOpacity style={styles.requestButton}>
+          <TouchableOpacity style={styles.requestButton} onPress={login}>
             <Text style={styles.requestButtonLabel}>REQUEST A RENT</Text>
           </TouchableOpacity>
         </View>
