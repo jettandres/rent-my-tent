@@ -16,12 +16,14 @@ import {
   waitForSignedTxs,
   requestAccountAddress,
   waitForAccountAuth,
-  FeeCurrency
+  FeeCurrency,
 } from '@celo/dappkit'
+import { toTxResult } from '@celo/contractkit/lib/utils/tx-result'
 
 import { Linking } from 'expo'
 
 import { web3, kit } from '../../root'
+import HelloWorldContract from '../../contracts/HelloWorld.json'
 
 const RentTent = ({ route, navigation }) => {
   const {
@@ -54,13 +56,13 @@ const RentTent = ({ route, navigation }) => {
   const [user, setUser] = useState(null)
   useEffect(() => {
     if (user) {
-      alert(JSON.stringify(user))
+      write()
     }
-  }, [user])
+  }, [user, write])
 
   const login = useCallback(async () => {
     const requestId = 'login'
-    const dappName = 'Rent-My-Tent'
+    const dappName = 'Rent My Tent'
     const callback = Linking.makeUrl('/my/path')
 
     requestAccountAddress({
@@ -76,6 +78,46 @@ const RentTent = ({ route, navigation }) => {
 
     setUser({ cUSDBalance: cUSDBalanceBig.toString(), address: dappkitResponse.address, phoneNumber: dappkitResponse.phoneNumber })
   }, [])
+
+  const write = useCallback(async () => {
+    const networkId = await web3.eth.net.getId()
+    const deployedNetwork = HelloWorldContract.networks[networkId]
+
+    const helloWorldContract = new web3.eth.Contract(
+      HelloWorldContract.abi,
+      deployedNetwork && deployedNetwork.address,
+      { from: null },
+    )
+
+    const {
+      address,
+    } = user
+
+    const requestId = 'update_name'
+    const dappName = 'Rent My Tent'
+    const callback = Linking.makeUrl('/my/path')
+
+    const txObject = await helloWorldContract.methods.setName('Hello from Rent My Tent')
+    requestTxSig(
+      kit,
+      [
+        {
+          from: address,
+          to: helloWorldContract.options.address,
+          tx: txObject,
+          feeCurrency: FeeCurrency.cUSD,
+        },
+      ],
+      { requestId, dappName, callback },
+    )
+
+    const dappkitResponse = await waitForSignedTxs(requestId)
+    const tx = dappkitResponse.rawTxs[0]
+    const result = await toTxResult(kit.web3.eth.sendSignedTransaction(tx)).waitReceipt()
+
+    console.log(`Rent My Tent contract update transcation receipt: `, result)
+  }, [user])
+
   return (
     <ScrollView style={styles.scrollView}>
       <View style={styles.container}>
