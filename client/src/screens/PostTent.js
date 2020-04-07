@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { View, Text, StyleSheet, ScrollView, TextInput, Picker } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, TextInput, Picker, TouchableOpacity } from 'react-native'
 import Slider from 'react-native-slider'
-import { EvilIcons } from '@expo/vector-icons'
+import { EvilIcons, FontAwesome5 } from '@expo/vector-icons'
 const PostTent = () => {
   const [sliderValue, setSliderValue] = useState(1)
   const [tentDescription, setTentDescription] = useState('')
@@ -9,6 +9,14 @@ const PostTent = () => {
   const [tentBirth, setTentBirth] = useState('2');
   const [tentYear, setTentYear] = useState('')
   const [tentName, setTentName] = useState('')
+
+  const [payEmail, setPayEmail] = useState('')
+  const [payCardNumber, setPayCardNumber] = useState('')
+  const [payCardExp, setPayCardExp] = useState('')
+  const [payCardCvc, setPayCardCvc] = useState('')
+  const [payCardName, setPayCardName] = useState('')
+  const [payCountry, setPayCountry] = useState('Philippines')
+  const [payPostal, setPayPostal] = useState('')
 
   return (
     <ScrollView style={styles.scrollView}>
@@ -69,25 +77,48 @@ const PostTent = () => {
           step={1}
           minimumTrackTintColor='#84b4c8'
         />
+        
         <View style={{ flexDirection: 'row', justifyContent: 'space-between'}}>
           <Text>1cUSD</Text>
           <Text>50cUSD</Text>
         </View>
-
-        <Text style={styles.summaryLabel}>Summary</Text>
-        <View style={styles.summaryItemContainer}>
-          <Text>One-time membership fee</Text>
-          <Text>{sliderValue} cUSD</Text>
-        </View>
-
+        
         <Text style={{ borderRadius: 4, padding: 16, backgroundColor: '#84b4c8', marginTop: 30, color: '#ffffff', fontSize: 16 }}>3. PAY $1 Membership</Text>
 
-        <View style={styles.summaryDivider} />
+        <TouchableOpacity style={{ alignItems: 'center', justifyContent: 'center', padding: 8, backgroundColor: 'black', width: '100%', marginTop: 16, borderRadius: 8 }}>
+          <FontAwesome5 name='apple-pay' size={30} color='white' />
+        </TouchableOpacity>
 
-        <View style={styles.summaryItemContainer}>
-          <Text style={styles.summaryTotal}>TOTAL</Text>
-          <Text style={styles.summaryTotal}>{sliderValue} cUSD</Text>
+        <View style={{ marginTop: 16, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
+          <View style={{ height: 1, backgroundColor: '#BDBDBD', flex: 1 }} />
+          <Text style={{ marginHorizontal: 16 }}>Or pay with card</Text>
+          <View style={{ height: 1, backgroundColor: '#BDBDBD', flex: 1 }} />
         </View>
+
+        <View>
+          <Text style={styles.fieldLabel}>Email</Text>
+          <TextInput style={[styles.fieldInput, { elevation: 3, backgroundColor: '#ffffff' }]} placeholder='' value={payEmail} onChangeText={setPayEmail} />
+        </View>
+        <View>
+          <Text style={styles.fieldLabel}>Card details</Text>
+          <View style={{ flexDirection: 'row', width: '100%' }}>
+            <TextInput style={[styles.fieldInput, { elevation: 3, flex: 2, backgroundColor: '#ffffff', borderBottomLeftRadius: 0, borderBottomRightRadius: 0 }]} placeholder='XXXX-XXXX-XXXX-XXXX' value={payCardNumber} onChangeText={setPayCardNumber} />
+          </View>
+          <View style={{ flexDirection: 'row', width: '100%' }}>
+            <TextInput style={[styles.fieldInput, { flex: 1, elevation: 3, backgroundColor: '#ffffff', borderTopLeftRadius: 0, borderTopRightRadius: 0, borderBottomRightRadius: 0, borderTopWidth: 1, borderRightWidth: 1, borderColor: '#E0E0E0' }]} placeholder='MM/YY' value={payCardExp} onChangeText={setPayCardExp} />
+            <TextInput style={[styles.fieldInput, { flex: 1, elevation: 3, backgroundColor: '#ffffff', borderTopLeftRadius: 0, borderTopRightRadius: 0, borderBottomLeftRadius: 0, borderTopWidth: 1, borderColor: '#E0E0E0' }]} placeholder='CVC' value={payCardCvc} onChangeText={setPayCardCvc} />
+          </View>
+        </View>
+        <View>
+          <Text style={styles.fieldLabel}>Name on card</Text>
+          <TextInput style={[styles.fieldInput, { elevation: 3, backgroundColor: '#ffffff' }]} placeholder='' value={payCardName} onChangeText={setPayCardName} />
+        </View>
+        <View>
+          <Text style={styles.fieldLabel}>Country or region</Text>
+          <TextInput style={[styles.fieldInput, { elevation: 3, backgroundColor: '#ffffff', borderBottomLeftRadius: 0, borderBottomRightRadius: 0, borderBottomWidth: 1, borderBottomColor: '#E0E0E0' }]} placeholder='' value={payCountry} onChangeText={setPayCountry} />
+          <TextInput style={[styles.fieldInput, { elevation: 3, backgroundColor: '#ffffff', borderTopLeftRadius: 0, borderTopRightRadius: 0 }]} placeholder='Postal Code' value={payPostal} onChangeText={setPayPostal} />
+        </View>
+
       </View>
     </ScrollView>
   )
@@ -110,26 +141,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'gray',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  summaryLabel: {
-    fontSize: 16,
-    marginTop: 24,
-    fontWeight: 'bold',
-    marginBottom: 16,
-  },
-  summaryItemContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  summaryDivider: {
-    marginVertical: 16,
-    height: 3,
-    backgroundColor: 'black',
-    width: '100%',
-  },
-  summaryTotal: {
-    fontWeight: 'bold',
-    fontSize: 14,
   },
   fieldLabel: {
     fontSize: 14,
