@@ -6,10 +6,13 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
+  Modal,
 } from 'react-native'
 
 import DatePicker from 'react-native-datepicker'
 import moment from 'moment'
+
+import { MaterialIcons } from '@expo/vector-icons'
 
 import {
   requestTxSig,
@@ -38,6 +41,8 @@ const RentTent = ({ route, navigation }) => {
   const [rentalPrice, setRentalPrice] = useState(displayPrice.match(/\d+/g).map(Number) * rentEndDate.diff(rentStartDate, 'd') + 1)
   const [depositFee, setDepositFee] = useState(parseFloat(rentalPrice * 0.25).toFixed(2))
   const [totalFee, setTotalFee] = useState(parseFloat(rentalPrice + depositFee).toFixed(2))
+  const [modalVisible, setModalVisible] = useState(false)
+  const [receipt, setReceipt] = useState({})
 
   useEffect(() => {
     const rate = displayPrice.match(/\d+/g).map(Number)
@@ -116,11 +121,33 @@ const RentTent = ({ route, navigation }) => {
     const result = await toTxResult(kit.web3.eth.sendSignedTransaction(tx)).waitReceipt()
 
     console.log(`Rent My Tent contract update transcation receipt: `, result)
+    setReceipt(result)
+    setModalVisible(true)
   }, [user])
 
   return (
     <ScrollView style={styles.scrollView}>
       <View style={styles.container}>
+        <Modal transparent={true} visible={modalVisible}>
+          <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.6)', justifyContent: 'center', alignItems: 'center' }}>
+            <View style={{ height: '40%', width: '80%', backgroundColor:'#ffffff', borderRadius: 8, alignItems: 'center', padding: 8, paddingTop: 16 }}>
+              <Text style={{ flex: 1, fontSize: 16, fontWeight: 'bold' }}>PAYMENT SUCCESSFUL</Text>
+              <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: '100%'}}>
+                <MaterialIcons name='attach-money' size={80} color='green' />
+                <Text style={{ width: 150 }}>We are informing the tent owner about your interest</Text>
+              </View>
+              <View style={{ flexDirection: 'column', width: '100%', justifyContent: 'flex-end' }}>
+                <TouchableOpacity style={{ justifyContent: 'center', alignItems: 'flex-end' }} onPress={() => Linking.openURL(`https://alfajores-blockscout.celo-testnet.org/tx/${receipt.transactionHash}`)}>
+                  <Text style={{ color: '#84b4c8', padding: 16, borderRadius: 4, fontWeight: 'bold' }}>VIEW TRANSACTION</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={{ justifyContent: 'center', alignItems: 'center', alignItems: 'flex-end' }} onPress={() => setModalVisible(false)}>
+                  <Text style={{ color: '#84b4c8', padding: 16, borderRadius: 4, fontWeight: 'bold' }}>CLOSE</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </Modal>
+        
         <Image style={styles.image} source={{ uri: image }} />
         <View style={styles.detailsContainer}>
           <Text style={styles.descriptionLabel}>Description</Text>
