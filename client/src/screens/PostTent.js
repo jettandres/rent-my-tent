@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ScrollView, TextInput, Picker, TouchableOpacity
 import Slider from 'react-native-slider'
 import { EvilIcons, FontAwesome5 } from '@expo/vector-icons'
 const PostTent = () => {
-  const [sliderValue, setSliderValue] = useState(1)
+  const [sliderValue, setSliderValue] = useState(23)
   const [tentDescription, setTentDescription] = useState('')
   const [tentBrand, setTentBrand] = useState('')
   const [tentBirth, setTentBirth] = useState('2');
