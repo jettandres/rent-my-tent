@@ -97,26 +97,26 @@ const PostTent = () => {
 
         <View>
           <Text style={styles.fieldLabel}>Email</Text>
-          <TextInput style={[styles.fieldInput, { elevation: 3, backgroundColor: '#ffffff' }]} placeholder='' value={payEmail} onChangeText={setPayEmail} />
+          <TextInput style={[styles.fieldInput, { paddingLeft: 16, elevation: 3, backgroundColor: '#ffffff' }]} placeholder='' value={payEmail} onChangeText={setPayEmail} />
         </View>
         <View>
           <Text style={styles.fieldLabel}>Card details</Text>
           <View style={{ flexDirection: 'row', width: '100%' }}>
-            <TextInput style={[styles.fieldInput, { elevation: 3, flex: 2, backgroundColor: '#ffffff', borderBottomLeftRadius: 0, borderBottomRightRadius: 0 }]} placeholder='XXXX-XXXX-XXXX-XXXX' value={payCardNumber} onChangeText={setPayCardNumber} />
+            <TextInput style={[styles.fieldInput, { paddingLeft: 16, elevation: 3, flex: 2, backgroundColor: '#ffffff', borderBottomLeftRadius: 0, borderBottomRightRadius: 0 }]} placeholder='XXXX-XXXX-XXXX-XXXX' value={payCardNumber} onChangeText={setPayCardNumber} />
           </View>
           <View style={{ flexDirection: 'row', width: '100%' }}>
-            <TextInput style={[styles.fieldInput, { flex: 1, elevation: 3, backgroundColor: '#ffffff', borderTopLeftRadius: 0, borderTopRightRadius: 0, borderBottomRightRadius: 0, borderTopWidth: 1, borderRightWidth: 1, borderColor: '#E0E0E0' }]} placeholder='MM/YY' value={payCardExp} onChangeText={setPayCardExp} />
-            <TextInput style={[styles.fieldInput, { flex: 1, elevation: 3, backgroundColor: '#ffffff', borderTopLeftRadius: 0, borderTopRightRadius: 0, borderBottomLeftRadius: 0, borderTopWidth: 1, borderColor: '#E0E0E0' }]} placeholder='CVC' value={payCardCvc} onChangeText={setPayCardCvc} />
+            <TextInput style={[styles.fieldInput, { paddingLeft: 16, flex: 1, elevation: 3, backgroundColor: '#ffffff', borderTopLeftRadius: 0, borderTopRightRadius: 0, borderBottomRightRadius: 0, borderTopWidth: 1, borderRightWidth: 1, borderColor: '#E0E0E0' }]} placeholder='MM/YY' value={payCardExp} onChangeText={setPayCardExp} />
+            <TextInput style={[styles.fieldInput, { paddingLeft: 16, flex: 1, elevation: 3, backgroundColor: '#ffffff', borderTopLeftRadius: 0, borderTopRightRadius: 0, borderBottomLeftRadius: 0, borderTopWidth: 1, borderColor: '#E0E0E0' }]} placeholder='CVC' value={payCardCvc} onChangeText={setPayCardCvc} />
           </View>
         </View>
         <View>
           <Text style={styles.fieldLabel}>Name on card</Text>
-          <TextInput style={[styles.fieldInput, { elevation: 3, backgroundColor: '#ffffff' }]} placeholder='' value={payCardName} onChangeText={setPayCardName} />
+          <TextInput style={[styles.fieldInput, { paddingLeft: 16, elevation: 3, backgroundColor: '#ffffff' }]} placeholder='' value={payCardName} onChangeText={setPayCardName} />
         </View>
         <View>
           <Text style={styles.fieldLabel}>Country or region</Text>
-          <TextInput style={[styles.fieldInput, { elevation: 3, backgroundColor: '#ffffff', borderBottomLeftRadius: 0, borderBottomRightRadius: 0, borderBottomWidth: 1, borderBottomColor: '#E0E0E0' }]} placeholder='' value={payCountry} onChangeText={setPayCountry} />
-          <TextInput style={[styles.fieldInput, { elevation: 3, backgroundColor: '#ffffff', borderTopLeftRadius: 0, borderTopRightRadius: 0 }]} placeholder='Postal Code' value={payPostal} onChangeText={setPayPostal} />
+          <TextInput style={[styles.fieldInput, { paddingLeft: 16, elevation: 3, backgroundColor: '#ffffff', borderBottomLeftRadius: 0, borderBottomRightRadius: 0, borderBottomWidth: 1, borderBottomColor: '#E0E0E0' }]} placeholder='' value={payCountry} onChangeText={setPayCountry} />
+          <TextInput style={[styles.fieldInput, { paddingLeft: 16, elevation: 3, backgroundColor: '#ffffff', borderTopLeftRadius: 0, borderTopRightRadius: 0 }]} placeholder='Postal Code' value={payPostal} onChangeText={setPayPostal} />
         </View>
 
       </View>
