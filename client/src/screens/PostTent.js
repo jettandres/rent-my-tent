@@ -119,6 +119,9 @@ const PostTent = () => {
           <TextInput style={[styles.fieldInput, { paddingLeft: 16, elevation: 3, backgroundColor: '#ffffff', borderTopLeftRadius: 0, borderTopRightRadius: 0 }]} placeholder='Postal Code' value={payPostal} onChangeText={setPayPostal} />
         </View>
 
+        <TouchableOpacity style={{ alignItems: 'center', justifyContent: 'center', padding: 8, paddingVertical: 14, backgroundColor: '#FFCA28', width: '100%', marginTop: 30, borderRadius: 8 }}>
+          <Text style={{ fontWeight: 'bold', fontSize: 16 }}>Pay $1.00</Text>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   )
@@ -141,6 +144,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'gray',
     justifyContent: 'center',
     alignItems: 'center',
+    borderRadius: 6,
   },
   fieldLabel: {
     fontSize: 14,
