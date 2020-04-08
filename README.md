@@ -23,14 +23,13 @@ We plan on leveraging [deposit return scheme](https://www.greenpeace.org.uk/news
 
 Tents will also be represented as [NFT](https://en.wikipedia.org/wiki/Non-fungible_token) to encourage more owners to post.
 
-# Screens
-## Post a tent
+## Post a Tent
 Users can post a tent anytime as long as they pay a one-time membership fee. Their tents will be represented as NFT(https://en.wikipedia.org/wiki/Non-fungible_token) in our platform.
 
 ![](screenshots/celoapptest2.gif)
 ![](screenshots/celoapptest3.gif)
 
-## Request Tent
+## Request a Tent
 
 A user can rent a tent for at least 7 days or more by paying with Celo coins.
 
