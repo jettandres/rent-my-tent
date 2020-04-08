@@ -35,5 +35,4 @@ Users can post a tent anytime as long as they pay a one-time membership fee. The
 A user can rent a tent for at least 7 days or more by paying with Celo coins.
 
 ![](screenshots/celoapptest.gif)
-
 ![](screenshots/celoapptest4.gif)
