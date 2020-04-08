@@ -1,5 +1,22 @@
 # Introducing
-**Rent My Tent** brings people who can no longer erect their own tent to share it with others who need it.
+The React Native app for **Rent My Tent** integrated with Celo SDK for transacting users.
+
+## Getting Started
+Make sure you have [Expo](https://expo.io/) and [Celo Wallet](https://celo.org/developers/wallet) apps installed in your device
+
+Register and login for a Celo account
+
+**To run app:**
+```
+cd client && expo start
+```
+
+**To make a Celo transaction**
+1. Select any Tent from the home screen
+2. Define rent period
+3. Tap on `REQUEST A RENT` button
+4. Celo app will prompt for login before creating a mock transaction
+5. Transaction receipt can be viewed from the success prompt that will pop-up
 
 # Purpose
 To discourage the purchasing of tents as one-time use only and thereby reducing our carbon footprint.
