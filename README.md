@@ -2,13 +2,30 @@
 The React Native app for **Rent My Tent** integrated with Celo SDK for transacting users.
 
 ## Getting Started
-Make sure you have [Expo](https://expo.io/) and [Celo Wallet](https://celo.org/developers/wallet) apps installed in your device
+1. Make sure you have [Expo](https://expo.io/) and [Celo Wallet](https://celo.org/developers/wallet) apps installed in your device
+2. Get a Celo invite code [here](https://celo.org/developers/faucet).
+3. Wait for an SMS with invitation code.
+4. Register for a Celo account using Celo Wallet app
+5. **IMPORTANT**: don\'t forget to input your invite code in Celo Wallet app from Step 2
+6. Create a new account for development (see below)
+7. Fund your Celo account [here](https://celo.org/developers/faucet).
 
-Register and login for a Celo account
+**Install developer tools**
+```
+$ npm install expo-cli --global
+```
+
+**Create new account for development**
+
+This script will generate a private key for you. Store it in `/.secret` or create one in root directory if it doesn't exist yet
+```
+$ npm run account
+```
 
 **To run app:**
 ```
-cd client && expo start
+$ cd client
+$ expo start
 ```
 
 **To make a Celo transaction**
