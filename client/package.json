@@ -30,7 +30,7 @@
     "expo-web-browser": "~8.0.0",
     "https-browserify": "^1.0.0",
     "libphonenumber-js": "^1.7.22",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "node-libs-react-native": "^1.0.3",
     "openzeppelin-solidity": "^2.3.0",
     "os-browserify": "^0.3.0",
